@@ -5,9 +5,12 @@ import uuid
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    # id = models.UUIDField(
-    #     primary_key=True, default=uuid.uuid4, editable=False, unique=True
-    # )
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+    )
     username = models.CharField(max_length=50, unique=True)
 
     USERNAME_FIELD = "username"

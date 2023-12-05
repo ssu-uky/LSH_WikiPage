@@ -5,14 +5,15 @@ from .models import User
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
-        "pk",
+        # "pk",
         "username",
+        "name",
         "is_active",
         "is_staff",
         "is_admin",
         "date_joined",
         "last_login",
     )
-    list_display_links = ("pk", "username")
+    list_display_links = ("username",)
 
     ordering = ("-date_joined",)
