@@ -61,3 +61,15 @@ class LoginView(APIView):
                 {"message": "아이디 또는 비밀번호가 일치하지 않습니다."},
                 status=status.HTTP_401_UNAUTHORIZED,
             )
+
+
+class LogoutView(APIView):
+    """
+    POST : 로그아웃
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
+        return Response({"message": "로그아웃 되었습니다."})
