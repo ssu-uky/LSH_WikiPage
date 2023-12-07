@@ -9,6 +9,7 @@ from .serializers import BoardPostSerializer, BoardListSerializer, BoardDetailSe
 from .models import Board
 
 
+# http://127.0.0.1:8000/api/v1/boards/post/
 class BoardPostView(APIView):
     """
     POST : 게시글 작성
@@ -18,6 +19,12 @@ class BoardPostView(APIView):
         return Response({"message": "title, content 를 입력해주세요."})
 
     def post(self, request):
+        if not request.user.is_staff:
+            return Response(
+                {"message": "게시글은 관리자만 작성할 수 있습니다."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
         serializer = BoardPostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -25,10 +32,10 @@ class BoardPostView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# http://127.0.0.1:8000/api/v1/boards/list/?page="숫자"
 class BoardListView(APIView):
     """
     GET : 게시글 목록 조회
-    http://127.0.0.1:8000/api/v1/boards/list/?page="숫자"
     """
 
     def get(self, request):

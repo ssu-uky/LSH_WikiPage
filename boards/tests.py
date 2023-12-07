@@ -31,10 +31,11 @@ def common_user(django_user_model):
 
 
 @pytest.mark.django_db
-def test_post_board(create_board):
+def test_post_board(create_board, admin_user):
     """
-    게시글 생성 테스트
+    게시글 생성 테스트 (관리자 권한)
     """
+    client.force_authenticate(user=admin_user)  # 관리자 권한 부여
     url = reverse("board-post")
     data = {
         "title": "new test title",
@@ -48,19 +49,20 @@ def test_post_board(create_board):
 
 
 @pytest.mark.django_db
-def test_fail_post_board(create_board):
+def test_fail_post_board(create_board, common_user):
     """
     게시글 생성 실패 테스트
     """
+    client.force_authenticate(user=common_user)
     url = reverse("board-post")
     data = {
         "title": "new test title",
     }
     response = client.post(url, data, format="json")
 
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert response.status_code == status.HTTP_403_FORBIDDEN
     assert Board.objects.count() == 1
-    assert response.data["content"][0] == "이 필드는 필수 항목입니다."
+    assert response.data["message"] == "게시글은 관리자만 작성할 수 있습니다."
 
 
 @pytest.mark.django_db
