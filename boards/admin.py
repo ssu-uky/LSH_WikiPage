@@ -22,3 +22,8 @@ class BoardAdmin(admin.ModelAdmin):
         "title",
         "created_at",
     )
+
+    search_fields = (
+        # "title",
+        "content",
+    )

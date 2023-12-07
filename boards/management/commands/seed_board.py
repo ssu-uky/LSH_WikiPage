@@ -40,8 +40,20 @@ class Command(BaseCommand):
         posts = []
 
         for _ in range(number):
-            title = f"{random.choice(coding_terms)} 강의"
-            content = f"안녕하세요. 오늘 소개할 강의는 {title} 입니다. " + faker.text(max_nb_chars=150)
+            title_term = random.choice(coding_terms)
+            post_term = random.choice(coding_terms)
+            content_term = random.choice(coding_terms)
+            final_term = random.choice(coding_terms)
+            ps_term = random.choice(coding_terms)
+
+            title = f"{title_term} 강의"
+            content = (
+                f"안녕하세요. 오늘의 강의는 {title_term} 입니다. {post_term} 에 대해 자세히 배워봅시다. "
+                + faker.text(max_nb_chars=50)
+                + f" {content_term} 는 매우 중요한 주제입니다."
+                + f" {final_term} 을 기억하세요."
+                + f" {ps_term} 도 잊지마세요."
+            )
 
             created_at = faker.date_time_between(
                 start_date="-1y", end_date="now", tzinfo=timezone
@@ -69,12 +81,5 @@ class Command(BaseCommand):
                 created_at=post.created_at,
                 updated_at=post.updated_at,
             )
-
-            # Board.objects.create(
-            #     title=title,
-            #     content=content,
-            #     created_at=created_at,
-            #     updated_at=updated_at,
-            # )
 
         self.stdout.write(self.style.SUCCESS(f"{number}개의 게시글이 생성되었습니다."))
