@@ -41,10 +41,7 @@ class Command(BaseCommand):
 
         for _ in range(number):
             title = f"{random.choice(coding_terms)} 강의"
-            content = (
-                f"안녕하세요. 오늘 소개할 강의는 {title} 입니다. "
-                + faker.text(max_nb_chars=150)
-            )
+            content = f"안녕하세요. 오늘 소개할 강의는 {title} 입니다. " + faker.text(max_nb_chars=150)
 
             created_at = faker.date_time_between(
                 start_date="-1y", end_date="now", tzinfo=timezone
