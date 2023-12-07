@@ -7,6 +7,7 @@
 - [요구사항](#요구사항)
 - [Skills](#skills)
 - [Installation](#installation)
+- [Dummy Data](#dummy-data)
 - [Test Code](#test-code)
 - [API Reference](#api-reference)
 
@@ -55,6 +56,15 @@ https://djecrety.ir/ 에서 SECRET_KEY 생성 후
 
 ```py
 SECRET_KEY="secret-key"
+```
+
+<br>
+
+## Dummy Data
+더미데이터 생성하기 (default : 50개 생성)
+
+```py
+python manage.py seed_board
 ```
 
 <br>
