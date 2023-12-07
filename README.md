@@ -1,5 +1,6 @@
 ![logo](https://github.com/ssu-uky/LSH_WikiPage/assets/101565486/a74c3503-8274-4ce5-8dfc-765acbed7daa)
 
+<br>
 
 ## Table of Contents
 - [개요](#개요)
@@ -14,7 +15,7 @@
 
 
 ## 개요
-강의와 관련된 정보에 대한 게시판을 만들고 게시글을 작성한다.
+강의와 관련된 정보에 대한 게시판을 만들고 게시글을 작성한다. <br>
 게시글은 admin만 작성, 수정, 삭제가 가능하며,
 게시글이 생성되면 연관된 게시글과 연결한다.
 
@@ -33,8 +34,8 @@
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=SQLite&logoColor=white"/>
-<br>
 
+<br><br>
 
 ## Installation
 가상환경 진입 후, 패키지 다운로드
@@ -57,7 +58,6 @@ SECRET_KEY="secret-key"
 ```
 
 <br>
-<br>
 
 ## Test Code
 
@@ -67,21 +67,21 @@ pytest
 
 <details>
 
-<summary> Testcode - click </summary>
+<summary> Test Code - click </summary>
 
-#### users test
+#### user test
 ```
 pytest users/tests.py
 ```
 
-#### boards test
+#### board test
 ```
 pytest boards/tests.py
 ```
 
 </details>
 
-<br><br>
+<br>
 
 ## API Reference
 
@@ -308,6 +308,8 @@ http://127.0.0.1:8000/api/v1/users/signup/
 }
 ```
 
+---
+
 #### Request
 
 `POST` - 로그인 <br>
@@ -331,6 +333,8 @@ Vary: Accept
     "message": "happy님, 로그인 되었습니다."
 }
 ```
+
+---
 
 #### Request
 
