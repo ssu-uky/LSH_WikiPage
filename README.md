@@ -34,7 +34,8 @@
 ## Skills
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white"/>&nbsp;
-<img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=SQLite&logoColor=white"/>
+<img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=SQLite&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Pytest-0A9EDC?style=flat&logo=SQLite&logoColor=white"/>
 
 <br>
 
@@ -102,6 +103,8 @@ pytest boards/tests.py
 
 `POST` - 게시글 작성 <br>
 http://127.0.0.1:8000/api/v1/boards/post/
+
+`IsAdminUser`
 
 ```py
 {
@@ -212,7 +215,10 @@ Vary: Accept
 
 #### Request
 
-`GET` , `POST` , `DELETE` - 게시글 상세조회 (연관게시물 포함), 수정, 삭제 
+`GET` , `PUT` , `DELETE` - 게시글 상세조회 (연관게시물 포함), 수정, 삭제 
+<br>
+`GET` : `AllowAny` <br>
+`PUT`, `DELETE` : `IsAdminUser`
 <br>
 
 http://127.0.0.1:8000/api/v1/boards/9/ <br>
