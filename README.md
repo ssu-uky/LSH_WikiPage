@@ -9,7 +9,8 @@
 - [Test Code](#test-code)
 - [API Reference](#api-reference)
 
-<br/>
+<br>
+<br>
 
 
 ## 개요
@@ -17,6 +18,7 @@
 게시글은 admin만 작성, 수정, 삭제가 가능하며,
 게시글이 생성되면 연관된 게시글과 연결한다.
 
+<br>
 
 ## 요구사항
 - 전체게시글 중에 60%이상에서 발견되는 단어는 연관 게시글을 파악할때 제외합니다.
@@ -25,12 +27,13 @@
 - 연관게시글이 보여지는 순서는 연관도가 높은것을 우선적으로 보여줍니다.
 - 게시글을 작성하고, 목록을 보여주고, 내용을 보여주는 프로그램을 만들어주시고, 게시글내용과 연관 게시글을 같이 표시해주세요.
 
+<br>
 
 ## Skills
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=SQLite&logoColor=white"/>
-<br/>
+<br>
 
 
 ## Installation
@@ -53,14 +56,18 @@ https://djecrety.ir/ 에서 SECRET_KEY 생성 후
 SECRET_KEY="secret-key"
 ```
 
-<br/>
-
+<br>
+<br>
 
 ## Test Code
 
 ```
 pytest
 ```
+
+<details>
+
+<summary> Testcode - click </summary>
 
 #### users test
 ```
@@ -72,8 +79,9 @@ pytest users/tests.py
 pytest boards/tests.py
 ```
 
-<br/>
+</details>
 
+<br><br>
 
 ## API Reference
 
@@ -110,6 +118,8 @@ Vary: Accept
 }
 
 ```
+
+<br><br>
 
 ---
 
@@ -271,7 +281,6 @@ Vary: Accept
 ```
 </details>
 
-
 <details>
 
 <summary> Users - click </summary>
@@ -344,4 +353,4 @@ Vary: Accept
 
 </details>
 
-<br/>
+<br>
