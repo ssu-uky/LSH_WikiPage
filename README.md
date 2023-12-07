@@ -1,4 +1,3 @@
-<br>
 ![logo](https://github.com/ssu-uky/LSH_WikiPage/assets/101565486/a74c3503-8274-4ce5-8dfc-765acbed7daa)
 
 <br>
