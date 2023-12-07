@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import AllowAny, IsAuthenticated
+
+from django.conf import settings
 
 from .serializers import BoardPostSerializer, BoardListSerializer, BoardDetailSerializer
 from .models import Board
@@ -26,12 +27,26 @@ class BoardPostView(APIView):
 class BoardListView(APIView):
     """
     GET : 게시글 목록 조회
+    http://127.0.0.1:8000/api/v1/boards/list/?page="숫자"
     """
 
     def get(self, request):
-        boards = Board.objects.all()
-        serializer = BoardListSerializer(boards, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        try:
+            page = request.query_params.get("page", 1)
+            page = int(page)
+        except ValueError:
+            page = 1
+
+        page_size = settings.PAGE_SIZE
+        start = page_size * (page - 1)
+        end = start + page_size
+
+        boards = Board.objects.all().order_by("-created_at")
+        serializer = BoardListSerializer(boards[start:end], many=True)
+        return Response(
+            {"count": len(boards), "results": serializer.data},
+            status=status.HTTP_200_OK,
+        )
 
 
 class BoardDetailView(APIView):
