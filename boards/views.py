@@ -28,7 +28,13 @@ class BoardPostView(APIView):
         serializer = BoardPostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "게시글 작성 완료"}, status=status.HTTP_201_CREATED)
+            return Response(
+                {
+                    "message": "게시글 작성 완료",
+                    "data": serializer.data,
+                },
+                status=status.HTTP_201_CREATED,
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
