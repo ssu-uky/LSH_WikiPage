@@ -1,3 +1,4 @@
+<br>
 ![logo](https://github.com/ssu-uky/LSH_WikiPage/assets/101565486/a74c3503-8274-4ce5-8dfc-765acbed7daa)
 
 <br>
@@ -35,7 +36,7 @@
 <img src="https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=SQLite&logoColor=white"/>
 
-<br><br>
+<br>
 
 ## Installation
 가상환경 진입 후, 패키지 다운로드
