@@ -165,7 +165,7 @@ def test_put_board_detail_by_admin(create_board, admin_user):
     """
     게시글 수정 테스트 (관리자 권한)
     """
-    client.force_authenticate(user=admin_user)  # 관리자 권한 부여
+    client.force_authenticate(user=admin_user)
     url = reverse("board-detail", kwargs={"id": create_board.id})
     data = {"title": "Updated Title", "content": "Updated Content"}
     response = client.put(url, data, format="json")

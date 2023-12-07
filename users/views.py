@@ -32,6 +32,7 @@ class SignUpView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# 127.0.0.1:8000/api/v1/users/login/
 class LoginView(APIView):
     """
     POST : 로그인
@@ -63,6 +64,7 @@ class LoginView(APIView):
             )
 
 
+# 127.0.0.1:8000/api/v1/users/logout/
 class LogoutView(APIView):
     """
     POST : 로그아웃

@@ -63,6 +63,7 @@ class BoardListView(APIView):
         )
 
 
+# http://127.0.0.1:8000/api/v1/boards/<int:board_id>/
 class BoardDetailView(APIView):
     """
     GET : 게시글 상세 조회 (연관 게시글 포함)
@@ -82,7 +83,6 @@ class BoardDetailView(APIView):
         all_words = [word for board in all_boards for word in board.content.split()]
         word_counter = Counter(all_words)
         total_count = len(all_words)
-        # 각 단어의 출현 빈도를 계산하여 딕셔너리로 변환
         return {word: count / total_count for word, count in word_counter.items()}
 
     # 연관 게시물 찾기
@@ -90,28 +90,24 @@ class BoardDetailView(APIView):
         word_frequencies = self.get_word_frequencies()
         words = content.split()
 
-        # 60% 이상 출현한 단어는 연관 게시글에서 제외합니다.
         excluded_words = {word for word, freq in word_frequencies.items() if freq > 0.6}
 
-        # 현재 게시글을 제외한 모든 게시글을 가져옵니다.
         candidate_boards = Board.objects.exclude(id=board_id)
 
         related_boards_info = {}
+
         for board in candidate_boards:
-            # 후보 게시글에서 제외 단어(60% 이상 출현한 단어)를 제외하고, 현재 게시글에 포함된 단어만 추출합니다.
             board_word_counts = Counter(
                 word
                 for word in board.content.split()
                 if word in words and word not in excluded_words
             )
-            # 현재 게시글에 포함된 단어가 2개 이상이고, 40% 이하 출현한 단어만 추출합니다.
             included_words = {
                 word
                 for word, count in board_word_counts.items()
                 if word_frequencies.get(word, 0) <= 0.4 and count >= 2
             }
 
-            # 포함 된 단어가 있다면, 해당 게시글을 연관 게시글로 계산
             if included_words:
                 total_count = sum(board_word_counts[word] for word in included_words)
                 related_boards_info[board] = {
@@ -121,7 +117,6 @@ class BoardDetailView(APIView):
                     },
                 }
 
-        # 연관도가 높은 순서대로 게시글을 정렬합니다.
         sorted_related_boards = sorted(
             related_boards_info.items(),
             key=lambda item: item[1]["total_count"],
@@ -138,7 +133,6 @@ class BoardDetailView(APIView):
 
         related_boards_data = self.get_related_boards(id, board.content)
 
-        # 연관 게시글 객체만 추출합니다.
         related_boards = [board[0] for board in related_boards_data]
         board.related_board.set(related_boards)
         board.save()
@@ -150,7 +144,6 @@ class BoardDetailView(APIView):
             "related_boards_count": related_boards_count,
         }
 
-        # 연관 게시글과 관련된 추가 정보를 serializer에 전달합니다.
         serializer = BoardDetailSerializer(board, context=data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
