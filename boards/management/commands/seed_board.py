@@ -37,7 +37,7 @@ class Command(BaseCommand):
         for _ in range(number):
             title = f"{random.choice(coding_terms)} 강의"
             content = (
-                f"안녕하세요. 오늘 소개할 강의는 {random.choice(coding_terms)}입니다."
+                f"안녕하세요. 오늘 소개할 강의는 {random.choice(coding_terms)} 입니다. "
                 + faker.text(max_nb_chars=150)
             )
             Board.objects.create(title=title, content=content)
